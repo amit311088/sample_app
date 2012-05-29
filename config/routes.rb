@@ -1,4 +1,6 @@
 SampleApp::Application.routes.draw do
+  get "users/new"
+
   get "layouts/_footer"
 
   get "layouts/_header"
@@ -74,5 +76,6 @@ SampleApp::Application.routes.draw do
 match '/about', :to => 'pages#about'
 match '/help', :to => 'pages#help'
 
+  match '/signup', :to => 'users#new'
   root :to => 'pages#home'
 end
