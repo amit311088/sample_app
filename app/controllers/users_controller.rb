@@ -10,7 +10,10 @@ class UsersController < ApplicationController
   
   def index
     @title = "All users"
-    @users = User.paginate(:page => params[:page])
+    @search = User.search do 
+      fulltext params[:search]
+    end
+    @users = @search.results#.paginate(:page => params[:page])
   end
   def new
     @user = User.new
@@ -47,6 +50,7 @@ class UsersController < ApplicationController
     flash[:success] = "User destroyed."
     redirect_to users_path
   end
+  
   private
   
   def correct_user
